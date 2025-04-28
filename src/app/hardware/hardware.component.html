@@ -1,0 +1,69 @@
+<m-container>
+    <br><br>
+        <m-card [header]="'Control'" [subheader]="'Analog DC Control, Servo Control, and Digital LED Control'" [imageurl]="''">
+            <div class="pure-g">
+                <div  class="pure-u-1-2"> <button class="pure-button" (click)="toggleLED()"> Toggle LED </button> </div>
+                <m-analog-output class="pure-u-1-2" style="display: flex; justify-content: center; "  [canvasWidth]="8" Type="led" Level="{{LEDState}}"></m-analog-output>
+            </div>
+            <div>
+                
+            <br><br><br><br>
+            
+            <div class="pure-g">
+                <div class="pure-u-1-1">
+                  <label for="dcmotor" style="flex: 1; font-size: 20px; font-weight: bolder;">DC Motor ({{DCMotorSpeed}}%)</label> <br>
+                  <input 
+                    type="range" 
+                    id="dcmotor" 
+                    name="dcmotor" 
+                    min="0" 
+                    max="100" 
+                    step="1" 
+                    value="50"
+                    (input)="updateDCMotorSpeed()"
+                    [(ngModel)]="DCMotorSpeed"
+                    style="flex: 3; width: 100%;" />
+                </div>
+            </div>
+    
+            <br><br><br><br>
+    
+    
+            <div class="pure-g">
+                <div class="pure-u-1-2">
+                  <label for="servo" style="flex: 1; font-size: 20px; font-weight: bolder;">Servo Motor ({{ServoMotorAngle}}°)</label><br>
+                  <input 
+                    type="range" 
+                    id="servo" 
+                    name="servo" 
+                    min="-90" 
+                    max="90" 
+                    step="1" 
+                    value="0"
+                    (input)="updateServoMotorAngle()"
+                    [(ngModel)]="ServoMotorAngle"
+                    style="flex: 3; width: 100%;" />
+                </div>
+                <m-analog-output class="pure-u-1-2" style="display: flex; justify-content: center; " [canvasWidth]="50" Type="servo" Level="{{ServoMotorAngle}}"></m-analog-output> 
+            </div> 
+            </div>
+              
+    
+              
+        </m-card>
+        <m-card [header]="'Monitoring'" [imageurl]="''" [subheader]="'Digital Sensor Value, Analog Sensor Value Once, and Over Time'">
+            <m-result-box [label]="'Button'" [class]="'normal'">
+                {{ButtonState}}
+            </m-result-box>
+            <m-result-box [label]="'Light Sensor'" [class]="'normal'">
+                {{LightSensorState}}
+            </m-result-box>
+            <div>
+                <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height: '360px'}" (chartInstance)="getChartInstance($event)">
+                    
+                </canvasjs-chart>    
+            </div>   
+        </m-card>
+</m-container>
+    
+    
