@@ -23,13 +23,10 @@ export class HomeComponent {
   constructor(public router: Router){
 
   }
-  hardwareApp(){
+  ScheduleSession(){
 
-    this.router.navigateByUrl('/hardware');
+    this.router.navigateByUrl('/schedule-sessions');
 
-  }
-  sideEffectsApp(){
-    this.router.navigateByUrl('/sideeffects');
   }
  
 }
