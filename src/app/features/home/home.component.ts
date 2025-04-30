@@ -28,5 +28,8 @@ export class HomeComponent {
     this.router.navigateByUrl('/schedule-sessions');
 
   }
+  LoadCalc(){
+    this.router.navigateByUrl('/loadcalculation');
+  }
  
 }
