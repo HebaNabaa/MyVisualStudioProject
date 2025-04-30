@@ -6,7 +6,7 @@ import { MContainerComponent } from "../../../m-framework/components/m-container
 @Component({
   selector: 'app-schedule-sessions',
   standalone: true,
-  imports: [MContainerComponent],
+  imports: [MContainerComponent,],
   templateUrl: './schedule-sessions.component.html',
   styleUrl: './schedule-sessions.component.css'
 })
