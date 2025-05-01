@@ -9,5 +9,5 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'schedule-sessions', component: ScheduleSessionsComponent },
   {path:'loadcalculation' , component: LoadcalculationComponent},
-  { path: 'errorTable', component: ErrorTableComponent }
+  { path: 'error-table', component: ErrorTableComponent }
 ];
