@@ -90,4 +90,232 @@
     <div class="pure-u-1-6 CellStyle">Slot 13: TR 18:50 to 20:35</div>
     <div class="pure-u-1-6 CellStyle">Slot 14: TR 20:45 to 22:30</div>
   </div>
+
+  <div class="pure-g">
+  <div class="pure-u-1-2">
+    <h1>Schedule Sessions</h1>
+
+
+  <form class="pure-form pure-form-aligned"  #userForm="ngForm">
+    <fieldset>
+  <div class="pure-control-group">
+    <label for="surgery">Surgery</label>
+    <select id="surgery" [(ngModel)]="SelectedSurgery" name="surgery" required>
+      <option value="" disabled selected>Select a surgery</option>
+      <option *ngFor="let surgery of surgeries" [value]="surgery">{{ surgery }}</option>
+    </select>
+    <span class="error-message" *ngIf="!SelectedSurgery">
+      <small> Required </small>
+    </span>
+  </div>
+
+
+  <div class="pure-control-group">
+    <label for="number">Number of Sessions</label>
+    <input required type="number" [(ngModel)]="numberOfSessions" name="number" min="1" max="10" #Numbercontrol="ngModel" >
+    <span class="error-message" *ngIf="Numbercontrol.invalid && Numbercontrol.touched"> 
+      <small *ngIf="Numbercontrol.errors?.['required']"> Required </small>
+      <small *ngIf="Numbercontrol.errors?.['min']"> Sessions cannot be below 1 </small>
+      <small *ngIf="Numbercontrol.errors?.['max']"> Sessions cannot be more than 10</small>
+  </span>
+  </div>
+
+  <div class="pure-control-group">
+    <button type="submit" class="pure-button button-Dareen" (click)="createSessions()">Display Sessions</button>
+  </div>
+  </fieldset>
+
+  <div *ngIf="sessions.length > 0">
+    <h2> Fill Session Details</h2>
+    <div *ngFor="let session of sessions; let i = index" class="session-card">
+      <h3>Session {{ session.sessionId }}</h3>
+
+      <div class="pure-control-group">
+      <label>Surgeon Name</label>
+      <input type="text" [(ngModel)]="session.surgeonName" name="surgeon{{i}}" required #Namecontrol="ngModel" >
+      <span class="error-message" *ngIf="Namecontrol.invalid && Namecontrol.touched"> 
+        <small *ngIf="Namecontrol.errors?.['required']"> Required </small>
+      </span>
+   </div>
+
+   
+   <div class="pure-control-group">
+      <label>Equipment</label>
+      <select [(ngModel)]="session.equipment" name="equipment{{i}}">
+        <option value="">-- Select --</option>
+        <option>Standard</option>
+        <option>Extended</option>
+        <option>Specialized</option>
+      </select>
+    </div>
+
+    <div class="pure-control-group">
+      <label>Time Slot</label>
+      <select [(ngModel)]="session.timeSlot" name="slot{{i}}">
+        <option value="">-- Select Slot --</option>
+        <option>Slot 1</option>
+        <option>Slot 2</option>
+        <option>Slot 3</option>
+        <option>Slot 4</option>
+        <option>Slot 5</option>
+        <option>Slot 6</option>
+        <option>Slot 7</option>
+        <option>Slot 8</option>
+        <option>Slot 9</option>
+        <option>Slot 10</option>
+        <option>Slot 11</option>
+        <option>Slot 12</option>
+        <option>Slot 13</option>
+        <option>Slot 14</option>
+      </select>
+  </div>
+
+  <div class="pure-control-group">
+      <label>Day</label>
+      <select [(ngModel)]="session.day" name="pattern{{i}}">
+        <option value="">-- Select --</option>
+        <option>MW</option>
+        <option>TR</option>
+      </select>
+    </div>
+
+    <div class="pure-control-group">
+      <label>Campus</label>
+      <select [(ngModel)]="session.campus" name="campus{{i}}">
+        <option value="">-- Select --</option>
+        <option>Abu Dhabi</option>
+        <option>Al Ain</option>
+      </select>
+    </div>
+      <hr>
+    </div>
+  
+    <div class="pure-controls">
+    <button type="submit" class="pure-button pure-button-primary" (click)="submitSessions()">Submit Sessions</button>
+  </div>
+
+
+    <div *ngIf="formWarning" class="error-message">
+      {{ formWarning }}
+    </div>
+  </div>
+</form>
+</div>
+</div>
+
+
+
+
+
+<div class="pure-g">
+  <div class="pure-u-1-2">
+    <h1>Delete Sessions</h1>
+
+
+  <form class="pure-form pure-form-aligned"  #userForm="ngForm">
+    <fieldset>
+  <div class="pure-control-group">
+    <label for="surgery">Surgery</label>
+    <select id="surgery" [(ngModel)]="SelectedSurgery" name="surgery" required>
+      <option value="" disabled selected>Select a surgery</option>
+      <option *ngFor="let surgery of surgeries" [value]="surgery">{{ surgery }}</option>
+    </select>
+    <span class="error-message" *ngIf="!SelectedSurgery">
+      <small> Required </small>
+    </span>
+  </div>
+
+
+  <div class="pure-control-group">
+    <label for="number">Number of Sessions</label>
+    <input required type="number" [(ngModel)]="numberOfSessions" name="number" min="1" max="10" #Numbercontrol="ngModel" >
+    <span class="error-message" *ngIf="Numbercontrol.invalid && Numbercontrol.touched"> 
+      <small *ngIf="Numbercontrol.errors?.['required']"> Required </small>
+      <small *ngIf="Numbercontrol.errors?.['min']"> Sessions cannot be below 1 </small>
+      <small *ngIf="Numbercontrol.errors?.['max']"> Sessions cannot be more than 10</small>
+  </span>
+  </div>
+
+  <div class="pure-control-group">
+    <button type="submit" class="pure-button button-Dareen" (click)="createSessions()">Delete Sessions</button>
+  </div>
+  </fieldset>
+
+  <div *ngIf="sessions.length > 0">
+    <h2> Fill Session Details</h2>
+    <div *ngFor="let session of sessions; let i = index" class="session-card">
+      <h3>Session {{ session.sessionId }}</h3>
+
+      <div class="pure-control-group">
+      <label>Surgeon Name</label>
+      <input type="text" [(ngModel)]="session.surgeonName" name="surgeon{{i}}" required #Namecontrol="ngModel" >
+      <span class="error-message" *ngIf="Namecontrol.invalid && Namecontrol.touched"> 
+        <small *ngIf="Namecontrol.errors?.['required']"> Required </small>
+      </span>
+   </div>
+
+   
+   <div class="pure-control-group">
+      <label>Equipment</label>
+      <select [(ngModel)]="session.equipment" name="equipment{{i}}">
+        <option value="">-- Select --</option>
+        <option>Standard</option>
+        <option>Extended</option>
+        <option>Specialized</option>
+      </select>
+    </div>
+
+    <div class="pure-control-group">
+      <label>Time Slot</label>
+      <select [(ngModel)]="session.timeSlot" name="slot{{i}}">
+        <option value="">-- Select Slot --</option>
+        <option>Slot 1</option>
+        <option>Slot 2</option>
+        <option>Slot 3</option>
+        <option>Slot 4</option>
+        <option>Slot 5</option>
+        <option>Slot 6</option>
+        <option>Slot 7</option>
+        <option>Slot 8</option>
+        <option>Slot 9</option>
+        <option>Slot 10</option>
+        <option>Slot 11</option>
+        <option>Slot 12</option>
+        <option>Slot 13</option>
+        <option>Slot 14</option>
+      </select>
+  </div>
+
+  <div class="pure-control-group">
+      <label>Day</label>
+      <select [(ngModel)]="session.day" name="pattern{{i}}">
+        <option value="">-- Select --</option>
+        <option>MW</option>
+        <option>TR</option>
+      </select>
+    </div>
+
+    <div class="pure-control-group">
+      <label>Campus</label>
+      <select [(ngModel)]="session.campus" name="campus{{i}}">
+        <option value="">-- Select --</option>
+        <option>Abu Dhabi</option>
+        <option>Al Ain</option>
+      </select>
+    </div>
+      <hr>
+    </div>
+  
+    <div class="pure-controls">
+    <button type="submit" class="pure-button pure-button-primary" (click)="submitSessions()">Delete Sessions </button>
+  </div>
+
+
+    <div *ngIf="formWarning" class="error-message">
+      {{ formWarning }}
+    </div>
+  </div>
+</form>
+</div>
+</div>
 </m-container>
