@@ -33,16 +33,18 @@
 
   <button class="pure-button" (click)="compareVersions()">Compare</button>
 
-  <h2>Version Action List:</h2>
-  <ul>
-    <li>Session ID 12: Slot 2 -> Slot 4</li>
-    <li>Session ID 13: Dr. Ahmad replaced with Dr. Sara</li>
-    <li>New Session added! Endoscopy in Slot 10</li>
-    <li>Session Removed! Endoscopy in Slot 10</li>
-  </ul>
+
 
   <br><br>
   <div class="pure-form-aligned" *ngIf="this.compare">
+    <h2>Version Action List:</h2>
+    <ul>
+      <li>Session ID 12: Slot 2 -> Slot 4</li>
+      <li>Session ID 13: Dr. Ahmad replaced with Dr. Sara</li>
+      <li>New Session added! Endoscopy in Slot 10</li>
+      <li>Session Removed! Endoscopy in Slot 10</li>
+    </ul>
+
     <h2>Version Comparison Logic</h2>
     <table class="pure-table">
       <thead>
