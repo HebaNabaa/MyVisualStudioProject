@@ -1,10 +1,11 @@
 export const environment = {
-    apiKey: "AIzaSyB132q5WSNcLcoL7sFr4AITgFL2YUD3JWc",
-    authDomain: "sideeffectsapp.firebaseapp.com",
-    databaseURL: "https://sideeffectsapp-default-rtdb.firebaseio.com",
-    projectId: "sideeffectsapp",
-    storageBucket: "sideeffectsapp.firebasestorage.app",
-    messagingSenderId: "628029335425",
-    appId: "1:628029335425:web:9e47b02e1c3bf9ec55aa80",
-    measurementId: "G-786VKV77F3"
+  apiKey: "AIzaSyBsyz1qlBNRYE5lX-rWt81tp5l5Uf3XAFo",
+  authDomain: "cyber-6940d.firebaseapp.com",
+  databaseURL: "https://cyber-6940d-default-rtdb.firebaseio.com",
+  projectId: "cyber-6940d",
+  storageBucket: "cyber-6940d.firebasestorage.app",
+  messagingSenderId: "498324611710",
+  appId: "1:498324611710:web:eacc903fe555935ee12e2f",
+  measurementId: "G-6NMZKDWR3S"
+
   };
