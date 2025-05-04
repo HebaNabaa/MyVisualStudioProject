@@ -23,7 +23,7 @@ export class HomeComponent {
     this.router.navigateByUrl('/loadcalculation');
   }
   ErrorGenerate(){
-    this.router.navigateByUrl('/errorTable');
+    this.router.navigateByUrl('/error-table');
   }
   SaveSession(){
     this.router.navigateByUrl('/save-version');

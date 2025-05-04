@@ -1,5 +1,5 @@
 <m-container>
-  <br><br>
+  <br><br><br>
   <h1>Save Version Button</h1>
   <button class="pure-button" (click)="saveVersion()">Save</button>
   <br><br>
@@ -12,8 +12,8 @@
 
   </select>-->
 
-  <h2>Comparison of Saved Versions</h2>
-  <label for="saveVersionA">Save - Version A</label>
+  <h1>Comparison of Saved Versions</h1>
+  <label for="saveVersionA">Save - Version A</label><br>
   <select id="saveVersionA">
     <option value="" disabled selected>Select Version</option>
     <option>Version 1 | 04/05/2025 - 1:11 PM</option>
@@ -22,7 +22,7 @@
 
   <br><br>
 
-  <label for="saveVersionB">Save - Version B</label>
+  <label for="saveVersionB">Save - Version B</label><br>
   <select id="saveVersionB">
     <option value="" disabled selected>Select Version</option>
     <option>Version 1 | 04/05/2025 - 1:11 PM</option>
@@ -33,17 +33,48 @@
 
   <button class="pure-button" (click)="compareVersions()">Compare</button>
 
-
-
   <br><br>
   <div class="pure-form-aligned" *ngIf="this.compare">
+    <h2>Version Action List</h2>
+    <table class = "pure-table">
+      <thead>
+        <tr>
+          <th>Session ID: </th>
+          <th>Action: </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>12</td>
+          <td>Slot 2 -> Slot 4</td>
+        </tr>
+
+        <tr>
+          <td>13</td>
+          <td>Dr. Ahmad replaced with Dr.Sara</td>
+        </tr>
+
+        <tr>
+          <td>19</td>
+          <td>Session Added! Endoscopy in Slot 10 - Campus: Abu Dhabi</td>
+        </tr>
+
+        <tr>
+          <td>19</td>
+          <td>Session Removed! Endoscopy in Slot 10 - Campus: Abu Dhabi</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!--
     <h2>Version Action List:</h2>
     <ul>
       <li>Session ID 12: Slot 2 -> Slot 4</li>
       <li>Session ID 13: Dr. Ahmad replaced with Dr. Sara</li>
       <li>New Session added! Endoscopy in Slot 10</li>
       <li>Session Removed! Endoscopy in Slot 10</li>
-    </ul>
+    </ul>-->
 
     <h2>Version Comparison Logic</h2>
     <table class="pure-table">

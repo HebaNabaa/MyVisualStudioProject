@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './features/home/home.component';
-import { ScheduleSessionsComponent } from './features/home/schedule-sessions/schedule-sessions.component';
+import { ScheduleSessionsComponent } from './features/schedule-sessions/schedule-sessions.component'
 import { LoadcalculationComponent } from './loadcalculation/loadcalculation.component';
 import { ErrorTableComponent } from './features/error-table/error-table.component';
 import { SaveVersionComponent } from './features/save-version/save-version.component';

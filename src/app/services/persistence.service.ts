@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, remove, set, onValue } from 'firebase/database';
+import { getDatabase, ref, remove, set, onValue, get } from 'firebase/database';
 
 @Injectable({
   providedIn: 'root'
