@@ -1,0 +1,110 @@
+<m-container>
+  <br><br>
+  <h1>Save Version Button</h1>
+  <button class="pure-button" (click)="saveVersion()">Save</button>
+  <br><br>
+ <!-- Actually functional button
+  <h2>Comparison of Saved Versions</h2>
+  <label for="saveVersionA">Save - Version A</label>
+  <select id="saveVersionA" [(ngModel)]="selectA" name="saveVersionA" required>
+    <option value="" disabled selected>Select Version</option>
+    <option *ngFor="let version of versions" [value]="version">{{version.label}} | {{version.timestamp}}</option>
+
+  </select>-->
+
+  <h2>Comparison of Saved Versions</h2>
+  <label for="saveVersionA">Save - Version A</label>
+  <select id="saveVersionA">
+    <option value="" disabled selected>Select Version</option>
+    <option>Version 1 | 04/05/2025 - 1:11 PM</option>
+    <option>Version 2 | 05/05/2025 - 9:04 AM</option>
+  </select>
+
+  <br><br>
+
+  <label for="saveVersionB">Save - Version B</label>
+  <select id="saveVersionB">
+    <option value="" disabled selected>Select Version</option>
+    <option>Version 1 | 04/05/2025 - 1:11 PM</option>
+    <option>Version 2 | 05/05/2025 - 9:04 AM</option>
+  </select>
+
+  <br><br>
+
+  <button class="pure-button" (click)="compareVersions()">Compare</button>
+
+  <h2>Version Action List:</h2>
+  <ul>
+    <li>Session ID 12: Slot 2 -> Slot 4</li>
+    <li>Session ID 13: Dr. Ahmad replaced with Dr. Sara</li>
+    <li>New Session added! Endoscopy in Slot 10</li>
+    <li>Session Removed! Endoscopy in Slot 10</li>
+  </ul>
+
+  <br><br>
+  <div class="pure-form-aligned" *ngIf="this.compare">
+    <h2>Version Comparison Logic</h2>
+    <table class="pure-table">
+      <thead>
+        <tr>
+          <th>Changes</th>
+          <th>Comparison</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>📦 Timing changes</td>
+
+          <td>
+            <ul>
+            <li>
+              Slot 2 → Slot 4
+            </li>
+          </ul>
+        </td>
+        </tr>
+
+        <tr>
+          <td>👨‍⚕️ Faculty/Surgeon changes</td>
+
+          <td>
+            <ul>
+            <li>
+              Dr.Khaled → Dr.Wasim
+            </li>
+          </ul>
+        </td>
+        </tr>
+
+        <tr>
+          <td>➕ Sessions added</td>
+
+          <td>
+            <ul>
+            <li>
+              Session submitted - surgery: Endoscopy, Surgeon: Dr.Williams, campus: Al Ain, time slot: TR, Slot 10
+            </li>
+          </ul>
+        </td>
+        </tr>
+
+        <tr>
+          <td>➖ Sessions removed</td>
+
+          <td>
+            <ul>
+            <li>
+              Session submitted - surgery: Endoscopy, Surgeon: Dr.Williams, campus: Al Ain, time slot: TR, Slot 10
+            </li>
+          </ul>
+        </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+
+</m-container>

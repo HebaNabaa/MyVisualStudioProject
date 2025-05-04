@@ -65,4 +65,9 @@ export class PersistenceService {
     return this.remotelist;
   }
 
+  saveSchedule(data:any): Promise<void>{
+    const dbRef = ref(this.db,`versions/${data.id}`);
+    return set(dbRef,data);
+  }
+
 }

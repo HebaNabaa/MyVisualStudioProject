@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MContainerComponent } from '../../m-framework/components/m-container/m-container.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -17,14 +17,15 @@ export class HomeComponent {
 
   }
   ScheduleSession(){
-
     this.router.navigateByUrl('/schedule-sessions');
-
   }
   LoadCalc(){
     this.router.navigateByUrl('/loadcalculation');
   }
   ErrorGenerate(){
     this.router.navigateByUrl('/errorTable');
+  }
+  SaveSession(){
+    this.router.navigateByUrl('/save-version');
   }
 }

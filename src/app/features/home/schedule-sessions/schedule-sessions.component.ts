@@ -1,4 +1,4 @@
-import { getDatabase } from 'firebase/database';
+import { getDatabase, set, ref, onValue } from 'firebase/database';
 import { PersistenceService } from './../../../m-framework/services/persistence.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { Operations } from '../../../data/operations';
 import { SlotSchedule } from '../../../data/slotschedule';
 import { MContainerComponent } from "../../../m-framework/components/m-container/m-container.component";
+import { timestamp } from 'rxjs';
+import { initializeApp } from 'firebase/app';
 
 
 @Component({
@@ -25,6 +27,7 @@ import { MContainerComponent } from "../../../m-framework/components/m-container
     formWarning:string="";
     schedule : SlotSchedule[];
     remotelistItems : any[] = [];
+    db : any;
 
 
     constructor(public persistence : PersistenceService) {
@@ -33,6 +36,7 @@ import { MContainerComponent } from "../../../m-framework/components/m-container
       this.formWarning = "";
       this.sessions = [];
       this.scheduled = [];
+      const firebaseApp = initializeApp()
 
       this.schedule = [
         new SlotSchedule('Slot 1','MW','09:00 to 10:45'),
@@ -56,7 +60,9 @@ import { MContainerComponent } from "../../../m-framework/components/m-container
       this.remotelistItems = this.persistence.getRemoteList();
     }
 
-    createSessions() {
+    createSessions(item: any) {
+      this.persistence.add(item,"local");
+      this.persistence.add(item,"remote");
 
       if (!this.SelectedSurgery || this.numberOfSessions < 1) {
         this.formWarning = "Please select an operation and enter a valid number of sessions";
@@ -97,5 +103,8 @@ import { MContainerComponent } from "../../../m-framework/components/m-container
       this.persistence.remove(id,'local');
       this.persistence.remove(id,'remote');
       alert("Session deleted successfully!")
+    }
+
+    saveVersion(){
     }
   }
