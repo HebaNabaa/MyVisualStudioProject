@@ -10,6 +10,7 @@ import { MContainerComponent } from "../../m-framework/components/m-container/m-
 import { timestamp } from 'rxjs';
 import { initializeApp } from 'firebase/app';
 import { environment } from '../../environments/environment';
+import { Surgeons } from '../../data/Surgeons';
 
 
 @Component({
@@ -22,6 +23,7 @@ import { environment } from '../../environments/environment';
 
   export class ScheduleSessionsComponent implements OnInit{
     operations: Operations;
+    surgeons: string[] = [];
     surgeries: string[] = [];
     SelectedSurgery: string = "";
     numberOfSessions: number=0;
@@ -37,6 +39,8 @@ import { environment } from '../../environments/environment';
 
 
     constructor(public persistence : PersistenceService, public router:Router) {
+      const surgeonList = new Surgeons();
+      this.surgeons = surgeonList.listOfSurgeons;
       this.operations = new Operations();
       this.surgeries = this.operations.listOfSurgeries;
       this.formWarning = "";

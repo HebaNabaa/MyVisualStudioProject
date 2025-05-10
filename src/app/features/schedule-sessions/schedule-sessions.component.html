@@ -370,7 +370,6 @@
     </span>
   </div>
 
-
   <div class="pure-control-group">
     <label for="number">Number of Sessions</label>
     <input required type="number" [(ngModel)]="numberOfSessions" name="number" min="1" max="10" #Numbercontrol="ngModel" >
@@ -392,11 +391,14 @@
       <h3>Session {{ session.sessionId }}</h3>
 
       <div class="pure-control-group">
-      <label>Surgeon Name</label>
-      <input type="text" [(ngModel)]="session.surgeonName" name="surgeon{{i}}" required #Namecontrol="ngModel" >
-      <span class="error-message" *ngIf="Namecontrol.invalid && Namecontrol.touched">
-        <small *ngIf="Namecontrol.errors?.['required']"> Required </small>
-      </span>
+        <label>Surgeon Name</label>
+        <select [(ngModel)]="session.surgeonName" name="surgeon{{i}}" required #Namecontrol="ngModel">
+          <option value="">-- Select Surgeon --</option>
+          <option *ngFor="let surgeon of surgeons" [value]="surgeon">{{ surgeon }}</option>
+        </select>
+        <span class="error-message" *ngIf="Namecontrol.invalid && Namecontrol.touched">
+          <small *ngIf="Namecontrol.errors?.['required']"> Required </small>
+        </span>
    </div>
 
 
@@ -430,15 +432,6 @@
         <option>Slot 14</option>
       </select>
   </div>
-
-  <div class="pure-control-group">
-      <label>Day</label>
-      <select [(ngModel)]="session.day" name="pattern{{i}}">
-        <option value="">-- Select --</option>
-        <option>MW</option>
-        <option>TR</option>
-      </select>
-    </div>
 
     <div class="pure-control-group">
       <label>Campus</label>
