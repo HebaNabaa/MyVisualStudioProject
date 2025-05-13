@@ -10,7 +10,8 @@ import { MContainerComponent } from "../../m-framework/components/m-container/m-
 import { timestamp } from 'rxjs';
 import { initializeApp } from 'firebase/app';
 import { environment } from '../../environments/environment';
-import { Surgeons } from '../../data/Surgeons';
+import { Surgeons } from '../../data/surgeons';
+import { isNgTemplate } from '@angular/compiler';
 
 
 @Component({
@@ -106,18 +107,13 @@ import { Surgeons } from '../../data/Surgeons';
     }
 
     submitSessions(item: any) {
-      const Filled = this.sessions.every(session =>
-        session.surgeonName &&
-        session.equipment &&
-        session.timeSlot &&
-        session.day &&
-        session.campus
-      );
-
-      if (!Filled) {
-        this.formWarning = "Please fill all fields in each session";
-        return;
-      }
+      //const Filled = this.sessions.every(session =>
+        //session.surgeonName &&
+        //session.equipment &&
+        //session.timeSlot &&
+        //session.day &&
+        //session.campus
+      //);
       this.scheduled.push(...this.sessions);
       alert("Submitted successfully!");
 
@@ -127,12 +123,20 @@ import { Surgeons } from '../../data/Surgeons';
       this.persistence.add(data, "remote");
     }
 
-    removeSession(id: string){
-      this.persistence.remove(id,'local');
-      this.persistence.remove(id,'remote');
-      alert("Session deleted successfully!")
-    }
+DeleteSessions(item: any) {
+    const index = this.scheduled.findIndex(session => session.id === item.id);
+    if (index !== -1) {
+        this.scheduled.splice(index, 1);}
+    
+}
 
-    saveVersion(){
-    }
-  }
+  //   removeSession(id: string){
+  //     this.persistence.remove(id,'local');
+  //     this.persistence.remove(id,'remote');
+  //     alert("Session deleted successfully!")
+  //   }
+
+  //   saveVersion(){
+  //   }
+  //
+   }
