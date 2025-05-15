@@ -12,6 +12,7 @@ import { initializeApp } from 'firebase/app';
 import { environment } from '../../environments/environment';
 import { Surgeons } from '../../data/surgeons';
 import { isNgTemplate } from '@angular/compiler';
+import{LocalService} from '../../services/Schedule.service'
 
 
 @Component({
@@ -37,9 +38,9 @@ import { isNgTemplate } from '@angular/compiler';
     db : any;
     abuDhabi : SlotSchedule[];
     alAin : SlotSchedule[];
+    sessionId: any[];
 
-
-    constructor(public persistence : PersistenceService, public router:Router) {
+    constructor(public persistence : PersistenceService, public router:Router, public localService: LocalService) {
       const surgeonList = new Surgeons();
       this.surgeons = surgeonList.listOfSurgeons;
       this.operations = new Operations();
@@ -47,6 +48,7 @@ import { isNgTemplate } from '@angular/compiler';
       this.formWarning = "";
       this.sessions = [];
       this.scheduled = [];
+      this.sessionId=[];
       const firebaseApp = initializeApp(environment);
 
       this.schedule = [
@@ -72,6 +74,11 @@ import { isNgTemplate } from '@angular/compiler';
 
     ngOnInit(): void{
       this.remotelistItems = this.persistence.getRemoteList();
+        this.scheduled = this.localService.getList();
+
+
+
+
     }
 
     createSessions() {
@@ -84,59 +91,48 @@ import { isNgTemplate } from '@angular/compiler';
 
       for (let i = 0; i < this.numberOfSessions; i++) {
         this.sessions.push({
+          s:"",
           sessionId: i + 1,
           surgery: this.SelectedSurgery,
           surgeonName: "",
           equipment: "",
           timeSlot: "",
-          day: "",
           campus: ""
         });
       }
-      const data = JSON.parse(JSON.stringify(this.sessions));
 
-      this.persistence.add(data, "local");
-      this.persistence.add(data, "remote");
+
 
     }
 
-    resetSession(){
-      this.sessions=[];
-      this.numberOfSessions=0;
-      this.SelectedSurgery="";
-    }
+  submitSessions(form:any) {
 
-    submitSessions(item: any) {
-      //const Filled = this.sessions.every(session =>
-        //session.surgeonName &&
-        //session.equipment &&
-        //session.timeSlot &&
-        //session.day &&
-        //session.campus
-      //);
-      this.scheduled.push(...this.sessions);
-      alert("Submitted successfully!");
+   this.scheduled.push(...this.sessions);
+   console.log(this.scheduled)
+   this.scheduled = this.localService.getList();
 
-      const data = JSON.parse(JSON.stringify(this.sessions));
+    //localStorage.setItem('local', JSON.stringify(this.scheduled));
 
-      this.persistence.add(data, "local");
-      this.persistence.add(data, "remote");
-    }
+  };
+
+
+
+    
 
 DeleteSessions(item: any) {
-    const index = this.scheduled.findIndex(session => session.id === item.id);
-    if (index !== -1) {
-        this.scheduled.splice(index, 1);}
-    
+  const index = this.scheduled.findIndex(s => s.s === item.s);
+  if (index !== -1) {
+    this.scheduled.splice(index, 1);
+   this.scheduled = this.localService.getList();
+  }
 }
+  get localList(){
+    return this.persistence.getLocalList();
 
-  //   removeSession(id: string){
-  //     this.persistence.remove(id,'local');
-  //     this.persistence.remove(id,'remote');
-  //     alert("Session deleted successfully!")
-  //   }
 
-  //   saveVersion(){
-  //   }
-  //
-   }
+}}
+
+
+
+ 
+   
