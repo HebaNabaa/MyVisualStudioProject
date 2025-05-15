@@ -50,20 +50,20 @@ import { isNgTemplate } from '@angular/compiler';
       const firebaseApp = initializeApp(environment);
 
       this.schedule = [
-        new SlotSchedule('Slot 1','MW','09:00 to 10:45'),
-        new SlotSchedule('Slot 2','MW','10:55 to 12:40'),
-        new SlotSchedule('Slot 3','MW','12:50 to 14:35'),
-        new SlotSchedule('Slot 4','MW','15:00 to 16:45'),
-        new SlotSchedule('Slot 5','MW','16:55 to 18:40'),
-        new SlotSchedule('Slot 6','MW','18:50 to 20:35'),
-        new SlotSchedule('Slot 7','MW','20:45 to 22:30'),
-        new SlotSchedule('Slot 8','TR','09:00 to 10:45'),
-        new SlotSchedule('Slot 9','TR','10:55 to 12:40'),
-        new SlotSchedule('Slot 10','TR','12:50 to 14:35'),
-        new SlotSchedule('Slot 11','TR','15:00 to 16:45'),
-        new SlotSchedule('Slot 12','TR','16:55 to 18:40'),
-        new SlotSchedule('Slot 13','TR','18:50 to 20:35'),
-        new SlotSchedule('Slot 14','TR','20:45 to 22:30'),];
+        new SlotSchedule('Slot 1','MW',),
+        new SlotSchedule('Slot 2','MW',),
+        new SlotSchedule('Slot 3','MW',),
+        new SlotSchedule('Slot 4','MW',),
+        new SlotSchedule('Slot 5','MW',),
+        new SlotSchedule('Slot 6','MW',),
+        new SlotSchedule('Slot 7','MW',),
+        new SlotSchedule('Slot 8','TR',),
+        new SlotSchedule('Slot 9','TR',),
+        new SlotSchedule('Slot 10','TR',),
+        new SlotSchedule('Slot 11','TR',),
+        new SlotSchedule('Slot 12','TR',),
+        new SlotSchedule('Slot 13','TR',),
+        new SlotSchedule('Slot 14','TR',),];
 
         this.abuDhabi = this.schedule;
         this.alAin = this.schedule;
