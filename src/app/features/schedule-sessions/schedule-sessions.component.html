@@ -1,6 +1,3 @@
-
-
-
 <m-container>
 <br><br><br><br>
 <h1 style="text-align:center;"> Scheduling Sessions for HDL Hospital </h1>
@@ -76,11 +73,6 @@
   </span>
   </div>
 
-
-
-
-
-
   <div class="pure-control-group">
     <button type="button" class="pure-button button-Dareen" (click)="createSessions()">Display Sessions</button>
   </div>
@@ -102,10 +94,10 @@
         </span>
    </div>
 
-   <div>
-<label for = "id" > Session ID</label>
-<input required [(ngModel)]="session.s" name="s{{i}}">
-</div>
+   <div class="pure-control-group">
+   <label for = "id" > Session ID </label>
+   <input required [(ngModel)]="session.s" name="s{{i}}">
+   </div>
 
 
    <div class="pure-control-group">
