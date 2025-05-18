@@ -48,5 +48,31 @@
 
   .Center{
 
-text-align: center;    
+text-align: center;
+  }
+
+  .button-x:hover{
+    color: white;
+    background-color: rgb(202, 60, 60);
+  }
+
+  .delete-session-card{
+  background: #f8f8f8;
+  border: 2px solid powderblue;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 15px;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s;
+  }
+
+  .heading3{
+    color:rgb(6, 47, 60);
+    border-bottom: 2px solid powderblue;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+
   }

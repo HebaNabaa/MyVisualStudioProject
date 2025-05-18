@@ -50,6 +50,7 @@ import{LocalService} from '../../services/Schedule.service'
       this.scheduled = [];
       this.sessionId=[];
       const firebaseApp = initializeApp(environment);
+      this.db = getDatabase(firebaseApp);
 
       this.schedule = [
         new SlotSchedule('Slot 1','MW','9:00 to 10:45'),
@@ -75,9 +76,6 @@ import{LocalService} from '../../services/Schedule.service'
     ngOnInit(): void{
       this.remotelistItems = this.persistence.getRemoteList();
         this.scheduled = this.localService.getList();
-
-
-
 
     }
 
@@ -108,31 +106,35 @@ import{LocalService} from '../../services/Schedule.service'
   submitSessions(form:any) {
 
    this.scheduled.push(...this.sessions);
+   this.sessions.forEach(session => this.persistence.add(session,'remote'));
    console.log(this.scheduled)
    this.scheduled = this.localService.getList();
-
     //localStorage.setItem('local', JSON.stringify(this.scheduled));
 
   };
 
 
 
-    
+
+
 
 DeleteSessions(item: any) {
   const index = this.scheduled.findIndex(s => s.s === item.s);
   if (index !== -1) {
     this.scheduled.splice(index, 1);
    this.scheduled = this.localService.getList();
+   this.persistence.remove(item.s,'remote');
   }
 }
   get localList(){
     return this.persistence.getLocalList();
 
 
+
+
 }}
 
 
 
- 
-   
+
+

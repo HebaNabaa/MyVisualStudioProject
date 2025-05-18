@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, remove, set, onValue, get } from 'firebase/database';
+import { getDatabase, ref, remove, set, onValue, get, push } from 'firebase/database';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,9 @@ export class PersistenceService {
       this.locallist?.push(item);
       localStorage.setItem("local",JSON.stringify(this.locallist));
     }else if (type == 'remote'){
-      set(ref(this.db,`items/${item.id}`), item).then(()=>{
+      const dataRef = push(ref(this.db,'items'));
+      const dataKey = dataRef.key;
+      set(dataRef, item).then(()=>{
         console.log("Added to Firebase");
         alert("Item Added");
       });

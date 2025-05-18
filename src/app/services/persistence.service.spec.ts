@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PersistenceService } from './persistence.service';
+import { PersistenceService } from './persistence$.service';
 
 describe('PersistenceService', () => {
   let service: PersistenceService;
