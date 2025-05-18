@@ -14,10 +14,12 @@
     <div
 
       *ngIf="session.timeSlot === slotSchedule.slot && session.campus === 'Abu Dhabi'" class="session-card">
-      <button class="button-x" (click)="DeleteSessions(session)">X</button>
+
+      🆔 {{ session.s }}<br>
       🟦 {{ session.surgery }}<br>
       👨‍⚕️ {{ session.surgeonName }}<br>
-      🆔 {{ session.s }}
+      <button class="button-x" (click)="DeleteSessions(session)">×</button>
+
     </div>
   </ng-container></div></div>
   </div>
@@ -30,13 +32,12 @@
     <div class="pure-u-1-3 CellStyle">{{ slotSchedule.slot }} {{ slotSchedule.time }}</div>
     <div class="pure-u-1-2 CellStyle">
     <ng-container *ngFor="let session of scheduled">
-      <div
-
-        *ngIf="session.timeSlot === slotSchedule.slot && session.campus === 'Al Ain'" class="session-card">
+      <div *ngIf="session.timeSlot === slotSchedule.slot && session.campus === 'Al Ain'" class="session-card">
       <button class="button-x" (click)="DeleteSessions(session)">X</button>
+        🆔 {{ session.s }}<br>
         🟦 {{ session.surgery }}<br>
-        👨‍⚕️ {{ session.surgeonName }}<br>
-        🆔 {{ session.s }}
+        👨‍⚕️ {{ session.surgeonName }}
+
       </div>
     </ng-container></div></div>
 
@@ -172,10 +173,10 @@
     <h1>Delete Sessions</h1>
     <div *ngFor="let session of scheduled" class="delete-session-card">
       <h3 class="heading3"> Session 🆔: {{ session.s }}</h3>
-      🕒 Timeslot: {{session.timeSlot}}<br>
-      🟦 Surgery : {{ session.surgery }}<br>
-      👨‍⚕️ Surgeon : {{ session.surgeonName }}<br>
-      🏥 Campus  : {{ session.campus }}<br>
+      🕒 <strong>Timeslot:</strong> {{session.timeSlot}}<br>
+      🟦 <strong>Surgery:</strong> {{ session.surgery }}<br>
+      👨‍⚕️ <strong>Surgeon:</strong> {{ session.surgeonName }}<br>
+      🏥 <strong>Campus:</strong> {{ session.campus }}<br>
   <button class="button-x" type="submit" (click)="DeleteSessions(session)">Delete</button>
 </div>
 </div>

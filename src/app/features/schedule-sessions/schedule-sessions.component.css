@@ -51,9 +51,29 @@
 text-align: center;
   }
 
+  .session-card{
+    background: #f7fbff;
+    border-top: 5px solid #89b0ff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin: 10px 0;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+  }
+
+  .button-x{
+  background-color: rgb(242, 143, 162);
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  transition: background-color 0.2s;
+  }
+
   .button-x:hover{
-    color: white;
-    background-color: rgb(202, 60, 60);
+      background-color: #c54d63;
   }
 
   .delete-session-card{
