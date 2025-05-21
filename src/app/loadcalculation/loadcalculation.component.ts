@@ -20,11 +20,12 @@ import { OnInit } from '@angular/core';
 export class LoadcalculationComponent implements OnInit {
   surgeons: string[] = [];
   db:any;
+  drLynnCount: number;
 
   constructor() {
-const app= initializeApp(environment)
-      this.db = getDatabase(app);
-
+    this.drLynnCount=0;
+    const app = initializeApp(environment);
+    this.db = getDatabase(app);
   }
 
   ngOnInit(): void {
@@ -32,6 +33,7 @@ const app= initializeApp(environment)
 
     onValue(ref(this.db, 'items'), (snapshot) => {
       const data = snapshot.val();
+
       if (data) {
         Object.keys(data).forEach((key) => {
           const session = data[key];
@@ -39,6 +41,10 @@ const app= initializeApp(environment)
             surgeonsList.push(session.surgeonName);
           }
         });
+
+        this.drLynnCount = Object.values(data).filter((session: any) =>
+          session.surgeonName === 'Dr.Lynn Abbidi'
+        ).length;
 
         this.surgeons = surgeonsList;
         console.log("Surgeons loaded:", this.surgeons);
