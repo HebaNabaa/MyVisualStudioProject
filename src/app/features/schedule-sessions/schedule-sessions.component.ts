@@ -14,7 +14,6 @@ import { Surgeons } from '../../data/surgeons';
 import { isNgTemplate } from '@angular/compiler';
 import{LocalService} from '../../services/Schedule.service'
 
-
 @Component({
     selector: 'app-schedule-sessions',
     standalone: true,
@@ -70,7 +69,13 @@ import{LocalService} from '../../services/Schedule.service'
 
         this.abuDhabi = this.schedule;
         this.alAin = this.schedule;
-    }
+
+
+  
+  
+  }
+
+
 
 
     ngOnInit(): void{
