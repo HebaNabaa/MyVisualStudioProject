@@ -6,23 +6,144 @@
       <table class="pure-table pure-table-bordered Table">
         <thead>
           <tr>
-            <th>Doctor</th>
-            <th>Load</th>
+            <th class="pure-table pure-table-bordered Table"> Doctor</th>
+            <th class="pure-table pure-table-bordered Table">Load</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngIf="drLynnCount < 4" class="class= pure-table Green ">
+
+          <tr *ngIf="drDareenCount < 4" class="pure-table Green">
+            <td>Dr. Dareen Alherbawi</td>
+            <td>{{ drDareenCount }}</td>
+          </tr>
+          <tr *ngIf="drDareenCount === 4" class="pure-table Yellow">
+            <td>Dr. Dareen Alherbawi</td>
+            <td>{{ drDareenCount }}</td>
+          </tr>
+          <tr *ngIf="drDareenCount > 4" class="pure-table Red">
+            <td>Dr. Dareen Alherbawi</td>
+            <td>{{ drDareenCount }}</td>
+          </tr>
+
+      
+          <tr *ngIf="drHebaCount < 4" class="pure-table Green">
+            <td>Dr. Heba Naba</td>
+            <td>{{ drHebaCount }}</td>
+          </tr>
+          <tr *ngIf="drHebaCount === 4" class="pure-table Yellow">
+            <td>Dr. Heba Naba</td>
+            <td>{{ drHebaCount }}</td>
+          </tr>
+          <tr *ngIf="drHebaCount > 4" class="pure-table Red">
+            <td>Dr. Heba Naba</td>
+            <td>{{ drHebaCount }}</td>
+          </tr>
+
+          <tr *ngIf="drLynnCount < 4" class="pure-table Green">
             <td>Dr. Lynn Abbidi</td>
             <td>{{ drLynnCount }}</td>
           </tr>
-          <tr *ngIf="drLynnCount === 4" class="class= pure-table Yellow ">
+          <tr *ngIf="drLynnCount === 4" class="pure-table Yellow">
             <td>Dr. Lynn Abbidi</td>
             <td>{{ drLynnCount }}</td>
           </tr>
-          <tr *ngIf="drLynnCount > 4" class="class= pure-table Red ">
+          <tr *ngIf="drLynnCount > 4" class="pure-table Red">
             <td>Dr. Lynn Abbidi</td>
             <td>{{ drLynnCount }}</td>
           </tr>
+
+          <tr *ngIf="drMohammadCount < 4" class="pure-table Green">
+            <td>Dr. Mohammad Ahsan</td>
+            <td>{{ drMohammadCount }}</td>
+          </tr>
+          <tr *ngIf="drMohammadCount === 4" class="pure-table Yellow">
+            <td>Dr. Mohammad Ahsan</td>
+            <td>{{ drMohammadCount }}</td>
+          </tr>
+          <tr *ngIf="drMohammadCount > 4" class="pure-table Red">
+            <td>Dr. Mohammad Ahsan</td>
+            <td>{{ drMohammadCount }}</td>
+          </tr>
+
+          <tr *ngIf="drAhmadCount < 4" class="pure-table Green">
+            <td>Dr. Ahmad Salim</td>
+            <td>{{ drAhmadCount }}</td>
+          </tr>
+          <tr *ngIf="drAhmadCount === 4" class="pure-table Yellow">
+            <td>Dr. Ahmad Salim</td>
+            <td>{{ drAhmadCount }}</td>
+          </tr>
+          <tr *ngIf="drAhmadCount > 4" class="pure-table Red">
+            <td>Dr. Ahmad Salim</td>
+            <td>{{ drAhmadCount }}</td>
+          </tr>
+
+          <tr *ngIf="drLaylaCount < 4" class="pure-table Green">
+            <td>Dr. Layla Abdalla</td>
+            <td>{{ drLaylaCount }}</td>
+          </tr>
+          <tr *ngIf="drLaylaCount === 4" class="pure-table Yellow">
+            <td>Dr. Layla Abdalla</td>
+            <td>{{ drLaylaCount }}</td>
+          </tr>
+          <tr *ngIf="drLaylaCount > 4" class="pure-table Red">
+            <td>Dr. Layla Abdalla</td>
+            <td>{{ drLaylaCount }}</td>
+          </tr>
+
+          <tr *ngIf="drKiranCount < 4" class="pure-table Green">
+            <td>Dr. Kiran Mostafa</td>
+            <td>{{ drKiranCount }}</td>
+          </tr>
+          <tr *ngIf="drKiranCount === 4" class="pure-table Yellow">
+            <td>Dr. Kiran Mostafa</td>
+            <td>{{ drKiranCount }}</td>
+          </tr>
+          <tr *ngIf="drKiranCount > 4" class="pure-table Red">
+            <td>Dr. Kiran Mostafa</td>
+            <td>{{ drKiranCount }}</td>
+          </tr>
+
+          <tr *ngIf="drFaheemCount < 4" class="pure-table Green">
+            <td>Dr. Faheem Tadros</td>
+            <td>{{ drFaheemCount }}</td>
+          </tr>
+          <tr *ngIf="drFaheemCount === 4" class="pure-table Yellow">
+            <td>Dr. Faheem Tadros</td>
+            <td>{{ drFaheemCount }}</td>
+          </tr>
+          <tr *ngIf="drFaheemCount > 4" class="pure-table Red">
+            <td>Dr. Faheem Tadros</td>
+            <td>{{ drFaheemCount }}</td>
+          </tr>
+
+      
+          <tr *ngIf="drZakaryaCount < 4" class="pure-table Green">
+            <td>Dr. Zakarya Hilal</td>
+            <td>{{ drZakaryaCount }}</td>
+          </tr>
+          <tr *ngIf="drZakaryaCount === 4" class="pure-table Yellow">
+            <td>Dr. Zakarya Hilal</td>
+            <td>{{ drZakaryaCount }}</td>
+          </tr>
+          <tr *ngIf="drZakaryaCount > 4" class="pure-table Red">
+            <td>Dr. Zakarya Hilal</td>
+            <td>{{ drZakaryaCount }}</td>
+          </tr>
+
+          <tr *ngIf="drAliCount < 4" class="pure-table Green">
+            <td>Dr. Ali Hasan</td>
+            <td>{{ drAliCount }}</td>
+          </tr>
+          <tr *ngIf="drAliCount === 4" class="pure-table Yellow">
+            <td>Dr. Ali Hasan</td>
+            <td>{{ drAliCount }}</td>
+          </tr>
+          <tr *ngIf="drAliCount > 4" class="pure-table Red">
+            <td>Dr. Ali Hasan</td>
+            <td>{{ drAliCount }}</td>
+          </tr>
+
         </tbody>
       </table>
     </div>
