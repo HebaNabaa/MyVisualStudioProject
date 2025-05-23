@@ -17,5 +17,10 @@ export class LocalService {
     return this.locallist;
   }
 
+  setList(list: any[]): void {
+    this.locallist = list;
+    localStorage.setItem('local', JSON.stringify(this.locallist));
+  }
+
 }
 
