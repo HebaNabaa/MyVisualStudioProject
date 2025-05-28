@@ -1,5 +1,6 @@
 <m-container>
-  <h1>Errors Table</h1>
+<br><br><br><br>
+  <h1  style="text-align:center;"> Errors </h1>
   <table class="pure-table pure-table-bordered error-table">
     <thead>
       <tr class="table-Dareen">
@@ -9,9 +10,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let error of errors$ | async">
-        <td>{{ error.type }}</td>
-        <td>{{ error.message }}</td>
+        <td>{{ error.Type }}</td>
+        <td>{{ error.Message }}</td>
       </tr>
     </tbody>
   </table>
 </m-container>
+
