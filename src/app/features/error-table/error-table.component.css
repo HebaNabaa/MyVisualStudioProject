@@ -1,7 +1,3 @@
-.Table{
-    background-color:lightgrey;
-}
-
 .button-Dareen {
     background-color: lightpink;
     color:black;
@@ -10,8 +6,15 @@
 .table-Dareen {
     background-color: rgb(210, 249, 236);
     color:black;
+    font-weight: bold;
+    
 }
 
+.Centertable{
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 .error-row {
     color:red;
     font-weight: bold;

@@ -13,10 +13,10 @@ interface ErrorItem {
 }
 
 interface Session {
-  Surgeon: string;
-  TimeSlot: string;
-  Campus: string;
-  Surgery: string;
+surgeonName: string;
+ timeSlot: string;
+  campus: string;
+  surgery: string;
 }
 @Component({
   selector: 'app-error-table',
@@ -27,7 +27,7 @@ interface Session {
 })
 
 export class ErrorTableComponent implements OnInit {
-  errors$: Observable<ErrorItem[]|undefined>;
+  errors$: Observable<ErrorItem[]|undefined >; 
   db: any;
 
   constructor(private local: LocalService) {
@@ -44,27 +44,27 @@ export class ErrorTableComponent implements OnInit {
           const Timeconflict = sessions.filter(
             (OtherSession:Session) =>
               FirstSession !== OtherSession &&
-              FirstSession.Surgeon === OtherSession.Surgeon &&
-              FirstSession. TimeSlot=== OtherSession. TimeSlot &&
-              FirstSession.Campus !== OtherSession.Campus
+              FirstSession.surgeonName === OtherSession.surgeonName &&
+              FirstSession. timeSlot=== OtherSession. timeSlot &&
+              FirstSession.campus !== OtherSession.campus
           );
-            if (Timeconflict.length && !ErrorAdded.has(FirstSession.Surgeon + FirstSession. TimeSlot)) {
+            if (Timeconflict.length && !ErrorAdded.has(FirstSession.surgeonName + FirstSession. timeSlot)) {
             errors.push({
               Type: 'Time Conflict',
-              Message: `${FirstSession.Surgeon} is assigned to both campuses during ${FirstSession. TimeSlot}.`
+              Message: `${FirstSession.surgeonName} is assigned to both campuses during ${FirstSession. timeSlot}.`
             });
-           ErrorAdded.add(FirstSession.Surgeon+ FirstSession. TimeSlot);
+           ErrorAdded.add(FirstSession.surgeonName+ FirstSession. timeSlot);
           }
         });
 
       
         const MapSurgeryToCampus: { [surgery: string]: Set<string> } = {};
         sessions.forEach((Session:Session) => {
-          if (!Session || !Session.Surgery || !Session.Campus) return;
+          if (!Session || !Session.surgery || !Session.campus) return;
 
-          if (!MapSurgeryToCampus[Session.Surgery])
-             MapSurgeryToCampus[Session.Surgery] = new Set();
-          MapSurgeryToCampus[Session.Surgery].add(Session.Campus);
+          if (!MapSurgeryToCampus[Session.surgery])
+             MapSurgeryToCampus[Session.surgery] = new Set();
+          MapSurgeryToCampus[Session.surgery].add(Session.campus);
         });
 
         Object.keys(MapSurgeryToCampus).forEach(surgery => {
@@ -80,7 +80,11 @@ export class ErrorTableComponent implements OnInit {
         
         const firebaseData: any = {};
         errors.forEach((Error, i) => firebaseData[i] = Error);
-        set(ref(this.db, 'errors'), firebaseData);
+        set(ref(this.db, 'error'), firebaseData) 
+        .then(() => console.log("Errors saved to Firebase"))
+        .catch (err => {
+          console.error ('Error not saved',err);
+        });
         return errors;
       })
     );
