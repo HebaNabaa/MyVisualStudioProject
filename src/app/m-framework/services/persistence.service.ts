@@ -29,37 +29,37 @@ export class PersistenceService {
       this.remotelist = data ? Object.keys(data).map( id => ({id, ...data[id]})):[];
     });
   }
+add(item: any, type: string){
+  if(type === 'local'){
+    this.locallist?.push(item);
+    localStorage.setItem("local", JSON.stringify(this.locallist));
+  } else if (type === 'remote'){
+    const itemKey = item.s;  
+    const dataRef = ref(this.db, 'items/' + itemKey);
 
-  add(item: any, type: string){
-    if(type == 'local'){
-      this.locallist?.push(item);
-      localStorage.setItem("local",JSON.stringify(this.locallist));
-    }else if (type == 'remote'){
-      const dataRef = push(ref(this.db,'items'));
-      const dataID = dataRef.key;
-      set(dataRef, item).then(()=>{
-        console.log("Added to Firebase");
-        alert("Item Added");
-      });
-    }
+    set(dataRef, item).then(() => {
+      item.id = itemKey; 
+      this.remotelist.push(item);
+      console.log("Added to Firebase:", itemKey);
+      alert("Item Added");
+    });
   }
+}
+remove(item: any, type: string) {
+ if (type === 'remote') {
+    const itemKey = item.s;  
+    const dataRef = ref(this.db, 'items/' + itemKey);
 
-  remove(id: string, type: string){
-    if(type == 'local'){
-      this.locallist?.splice(this.locallist.findIndex((item)=>{
-        return item.id == id;
-      }),1);
-      localStorage.setItem("local", JSON.stringify(this.locallist));
-    }else if (type == 'remote'){
-      this.remotelist?.splice(this.remotelist.findIndex((item)=>{
-        return item.id == id;
-      }),1);
-      remove(ref(this.db,`items/${id}`)).then(()=>{
-        console.log("Added to Firebase");
-        alert("Item Removed");
-      })
-    }
+   remove(dataRef).then(() => {
+      const index = this.remotelist.findIndex(s => s.s === item.s);
+      if (index !== -1) {
+        this.remotelist.splice(index, 1);
+      }
+      console.log("Removed from Firebase:", itemKey);
+      alert("Item Removed");
+    });
   }
+}
 
   getLocalList(){
     return this.locallist;

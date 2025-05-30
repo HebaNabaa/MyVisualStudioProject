@@ -37,8 +37,10 @@ export class PersistenceService {
     }else if (type == 'remote'){
       const dataRef = push(ref(this.db,'items'));
       const dataKey = dataRef.key;
-      set(dataRef, item).then(()=>{
+      const itemId = { s: dataKey, ...item }; 
+      set(dataRef, itemId).then(()=>{
         console.log("Added to Firebase");
+        console.log(itemId)
         alert("Item Added");
       });
     }
@@ -50,12 +52,13 @@ export class PersistenceService {
         return item.id == id;
       }),1);
       localStorage.setItem("local", JSON.stringify(this.locallist));
+
     }else if (type == 'remote'){
       this.remotelist?.splice(this.remotelist.findIndex((item)=>{
         return item.id == id;
       }),1);
       remove(ref(this.db,`items/${id}`)).then(()=>{
-        console.log("Added to Firebase");
+        console.log("Removed from Firebase");
         alert("Item Removed");
       })
     }

@@ -124,11 +124,13 @@ import{LocalService} from '../../services/Schedule.service'
 
 
 DeleteSessions(item: any) {
+  console.log(item)
+  
   const index = this.scheduled.findIndex(s => s.s === item.s);
   if (index !== -1) {
     this.scheduled.splice(index, 1);
    this.scheduled = this.localService.getList();
-   this.persistence.remove(item.s,'remote');
+this.persistence.remove(item,'remote');
   }
 }
   get localList(){
