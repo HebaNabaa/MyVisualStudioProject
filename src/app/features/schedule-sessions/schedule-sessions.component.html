@@ -87,7 +87,7 @@
       <div class="pure-control-group">
         <label>Surgeon Name</label>
         <select [(ngModel)]="session.surgeonName" name="surgeon{{i}}" required #Namecontrol="ngModel">
-          <option value="">-- Select Surgeon --</option>
+          <option value="">Select Surgeon</option>
           <option *ngFor="let surgeon of surgeons" [value]="surgeon">{{ surgeon }}</option>
         </select>
         <span class="error-message" *ngIf="Namecontrol.invalid && Namecontrol.touched">
@@ -104,7 +104,7 @@
    <div class="pure-control-group">
       <label>Equipment</label>
       <select [(ngModel)]="session.equipment" name="equipment{{i}}">
-        <option value="">-- Select --</option>
+        <option value="">Select</option>
         <option>Standard</option>
         <option>Extended</option>
         <option>Specialized</option>
@@ -114,7 +114,7 @@
     <div class="pure-control-group">
       <label>Time Slot</label>
       <select [(ngModel)]="session.timeSlot" name="slot{{i}}">
-        <option value="">-- Select Slot --</option>
+        <option value="">Select Slot</option>
         <option>Slot 1</option>
         <option>Slot 2</option>
         <option>Slot 3</option>
@@ -135,7 +135,7 @@
     <div class="pure-control-group">
       <label>Campus</label>
       <select [(ngModel)]="session.campus" name="campus{{i}}">
-        <option value="">-- Select --</option>
+        <option value="">Select</option>
         <option>Abu Dhabi</option>
         <option>Al Ain</option>
       </select>

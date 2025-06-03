@@ -32,8 +32,8 @@ export class ErrorTableComponent implements OnInit {
 
   constructor(private local: LocalService) {
     const app = initializeApp(environment);
-    this.db = getDatabase(app);
     const sessions = this.local.getList() || [];
+    this.db = getDatabase(app);
     this.errors$ = from([sessions]).pipe(
       map(sessions => {
       const errors: ErrorItem[] = [];
@@ -41,8 +41,8 @@ export class ErrorTableComponent implements OnInit {
 
         sessions.forEach((FirstSession:Session) => {
 
-          const Timeconflict = sessions.filter(
-            (OtherSession:Session) =>
+          const Timeconflict = sessions.filter((OtherSession:Session) =>
+
               FirstSession !== OtherSession &&
               FirstSession.surgeonName === OtherSession.surgeonName &&
               FirstSession. timeSlot=== OtherSession. timeSlot &&
@@ -58,21 +58,22 @@ export class ErrorTableComponent implements OnInit {
         });
 
       
-        const MapSurgeryToCampus: { [surgery: string]: Set<string> } = {};
+        const Warning: { [surgery: string]: Set<string> } = {};
         sessions.forEach((Session:Session) => {
-          if (!Session || !Session.surgery || !Session.campus) return;
+          if (!Session || !Session.surgery || !Session.campus) 
+            return;
 
-          if (!MapSurgeryToCampus[Session.surgery])
-             MapSurgeryToCampus[Session.surgery] = new Set();
-          MapSurgeryToCampus[Session.surgery].add(Session.campus);
+          if (!Warning[Session.surgery])
+             Warning[Session.surgery] = new Set();
+          Warning[Session.surgery].add(Session.campus);
         });
 
-        Object.keys(MapSurgeryToCampus).forEach(surgery => {
-          const campuses = [...MapSurgeryToCampus[surgery]];
-          if (campuses.length === 1) {
-            errors.push({
+        Object.keys(Warning).forEach(surgery => {
+          
+          const campuses = [...Warning[surgery]];
+          if (campuses.length === 1) {errors.push({
               Type: 'Warning',
-              Message: `${surgery} only scheduled in ${campuses[0]}.`
+              Message: `The ${surgery} surgery is only scheduled in ${campuses[0]}.`
             });
           }
         });
