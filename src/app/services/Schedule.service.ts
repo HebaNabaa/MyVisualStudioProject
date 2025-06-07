@@ -5,8 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class LocalService {
   locallist: any[];
+  scheduledlist: any[];
 
   constructor() {
+    this.scheduledlist = [];
     let myList: string | null = localStorage.getItem('local');
     this.locallist = myList ? JSON.parse(myList) : [];
   }
@@ -22,5 +24,12 @@ export class LocalService {
     localStorage.setItem('local', JSON.stringify(this.locallist));
   }
 
+    getallScheduledList(): any[]{
+    const scheduled = localStorage.getItem('local');
+    if (scheduled){
+      return this.scheduledlist = JSON.parse(scheduled);
+    }
+    return this.scheduledlist;
+  }
 }
 

@@ -35,29 +35,29 @@ export class FirebaseService {
   }
   setupFirebase() {
     const firebaseConfig = {
-      apiKey: "AIzaSyCnk5pXctfgwgN_JPjTT0Zfblwhdy21_wQ",
-      authDomain: "cen333db.firebaseapp.com",
-      databaseURL: "https://cen333db-default-rtdb.firebaseio.com",
-      projectId: "cen333db",
-      storageBucket: "cen333db.appspot.com",
-      messagingSenderId: "223377335324",
-      appId: "1:223377335324:web:039a6f8e5605e38c93ebd9",
-      measurementId: "G-DDRD83DX4Z"
+      apiKey: "AIzaSyBsyz1qlBNRYE5lX-rWt81tp5l5Uf3XAFo",
+      authDomain: "cyber-6940d.firebaseapp.com",
+      databaseURL: "https://cyber-6940d-default-rtdb.firebaseio.com",
+      projectId: "cyber-6940d",
+      storageBucket: "cyber-6940d.firebasestorage.app",
+      messagingSenderId: "498324611710",
+      appId: "1:498324611710:web:eacc903fe555935ee12e2f",
+      measurementId: "G-6NMZKDWR3S"
     };
     initializeApp(firebaseConfig);
   }
 
-  // CRUD: Create, Retrieve, Update, Delete 
+  // CRUD: Create, Retrieve, Update, Delete
   create(path: string, data: any): Promise<void>{ // Create
     return set(ref(this.db, path), data);
   }
   async retrieve(path: string, key: string): Promise<DataSnapshot>{
     return await get(ref(this.db, path+"/"+key));
   }
-  update(path: string, key: string, data: any): Promise<void>{ 
+  update(path: string, key: string, data: any): Promise<void>{
     return update(ref(this.db, path + "/" + key), data);
   }
-  delete(path: string, key: string): Promise<void>{ 
+  delete(path: string, key: string): Promise<void>{
     return remove(ref(this.db, path+"/"+key));
   }
 
@@ -70,18 +70,18 @@ export class FirebaseService {
   deleteFromList(path: string, key: string){
     this.delete(path, key);
   }
-  // Get List Once 
+  // Get List Once
   async getList(path: string){
     const dblist = await get(ref(this.db, path));
     let locallist: any[] = [];
     dblist.forEach( (item: any) =>{locallist.push(item.val());});
-    return locallist; 
+    return locallist;
   }
   reset(){
     this.delete("","");
   }
   getDB(){
-    return this.db; 
+    return this.db;
   }
 }
 
