@@ -1,6 +1,4 @@
-import { ScheduleSessionsComponent } from './../schedule-sessions/schedule-sessions.component';
-import { Version } from './../../data/version';
-import { map, timestamp, from, Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { MContainerComponent } from '../../m-framework/components/m-container/m-container.component';
 import { FormsModule } from '@angular/forms';
@@ -8,8 +6,7 @@ import { CommonModule } from '@angular/common';
 import { PersistenceService } from '../../m-framework/services/persistence.service';
 import { Router } from '@angular/router';
 import { LocalService } from '../../services/Schedule.service';
-import { getDatabase, ref, push } from 'firebase/database';
-import { SlotSchedule } from '../../data/slotschedule';
+import { getDatabase } from 'firebase/database';
 import { environment } from '../../environments/environment';
 import { initializeApp } from 'firebase/app';
 import { FirebaseService } from '../../m-framework/services/firebase.service';
@@ -98,44 +95,45 @@ export class SaveVersionComponent implements OnInit{
     const removedSessions: string[] = [];
     const addedSessions  : string[] = [];
 
-    verA?.session.forEach((scheduleA) => {
-      const matchScheduleB = verB?.session.find(scheduleB =>
-        scheduleA.surgery === scheduleB.surgery && scheduleA.campus === scheduleB.campus
-      );
 
-      if(!matchScheduleB){
+    verA.session.forEach((scheduleA) =>{
+      let match = false;
+
+      verB.session.forEach((scheduleB)=>{
+        if(scheduleA.surgery === scheduleB.surgery && scheduleA.campus === scheduleB.campus){
+          match = true;
+
+          if(scheduleA.timeSlot !== scheduleB.timeSlot){
+            timeChanges.push(`${scheduleA.timeSlot} moved to ${scheduleB.timeSlot}.`);
+            changes.push(`🕒 Time change: ${scheduleA.timeSlot} -> ${scheduleB.timeSlot}.`);
+          }
+          if(scheduleA.surgeonName !== scheduleB.surgeonName){
+            facultyChanges.push(`${scheduleA.surgeonName} changed for ${scheduleB.surgeonName}.`);
+            changes.push(`🥼 Faculty change: ${scheduleA.surgeonName} -> ${scheduleB.surgeonName}.`);
+          }
+        }
+      });
+      if(!match){
         removedSessions.push(`${scheduleA.surgery} Session Removed.`);
         changes.push(`➖ Removed Session: ${scheduleA.surgery} from campus ${scheduleA.campus}.`);
-      }else{
-        if(scheduleA.timeSlot !== matchScheduleB.timeSlot){
-          timeChanges.push(`${scheduleA.timeSlot} moved to ${matchScheduleB.timeSlot}.`);
-          changes.push(`🕒 Time change: ${scheduleA.timeSlot} -> ${matchScheduleB.timeSlot}.`);
-        }
-        if(scheduleA.surgeonName !== matchScheduleB.surgeonName){
-          facultyChanges.push(`${scheduleA.surgeonName} changed for ${matchScheduleB.surgeonName}.`);
-          changes.push(`🥼 Faculty change: ${scheduleA.surgeonName} -> ${matchScheduleB.surgeonName}.`)
-        }
       }
     });
 
-    verB?.session.forEach((scheduleB) => {
-      const matchScheduleA = verA?.session.find(scheduleA =>
-        scheduleB.surgery === scheduleA.surgery && scheduleB.campus === scheduleA.campus
-      );
-      if(!matchScheduleA){
-        changes.push(`➕ Added Session: ${scheduleB.surgery} from campus ${scheduleB.campus}.`)
-        addedSessions.push(`${scheduleB.surgery} Session Added.`)
+    verB.session.forEach((scheduleB)=>{
+      let match = false;
+      verA.session.forEach((scheduleA)=>{
+        if(scheduleB.surgery===scheduleA.surgery && scheduleB.campus === scheduleA.campus){
+          match=true;
+        }
+      });
+      if(!match){
+        addedSessions.push(`${scheduleB.surgery} Session Added.`);
+        changes.push(`➕ Added Session: ${scheduleB.surgery} from campus ${scheduleB.campus}.`);
       }
     });
 
     this.compareResults$ = from([{changes,timeChanges,facultyChanges,addedSessions,removedSessions}]);
     this.compare = true;
-  }
-
-
-
-  get localList(){
-    return this.persistence.getLocalList();
   }
 
 }
