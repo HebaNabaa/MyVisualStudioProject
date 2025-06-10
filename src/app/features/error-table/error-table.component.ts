@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { MContainerComponent } from '../../m-framework/components/m-container/m-container.component';
 import { CommonModule } from '@angular/common';
 import { getDatabase, ref, set } from 'firebase/database';
@@ -26,7 +26,7 @@ surgeonName: string;
   styleUrl: './error-table.component.css'
 })
 
-export class ErrorTableComponent implements OnInit {
+export class ErrorTableComponent {
   errors$: Observable<ErrorItem[]|undefined >; 
   db: any;
 
@@ -73,7 +73,7 @@ export class ErrorTableComponent implements OnInit {
           const campuses = [...Warning[surgery]];
           if (campuses.length === 1) {errors.push({
               Type: 'Warning',
-              Message: `The ${surgery} surgery is only scheduled in ${campuses[0]}.`
+              Message: `The ${surgery} surgery is only scheduled in ${campuses[0]}, Please verify if it is also scheduled in the other campus.`
             });
           }
         });
@@ -82,14 +82,11 @@ export class ErrorTableComponent implements OnInit {
         const firebaseData: any = {};
         errors.forEach((Error, i) => firebaseData[i] = Error);
         set(ref(this.db, 'error'), firebaseData) 
-        .then(() => console.log("Errors saved to Firebase"))
-        .catch (err => {
-          console.error ('Error not saved',err);
-        });
+        .then(() => console.log("Errors saved to Firebase"));
         return errors;
       })
     );
   }
 
-  ngOnInit(): void {}
+  //ngOnInit(): void {}  implements OnInit
 }
